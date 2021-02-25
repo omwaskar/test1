@@ -45,7 +45,7 @@ then
         echo "$college" >> task.txt
         cat /etc/passwd | grep rhel8 >> task.txt
 
-        if [ $(cat /etc/passwd | grep rhel8) ];
+        if (cat /etc/passwd | grep rhel8)
         then
                 echo "You got a 10/10 in this task." >> task.txt
         else
@@ -58,7 +58,7 @@ then
         rm -rf ./rhel8-workshop
         rm -rf ./task.txt
 
-elif [ $tsk = 3];
+elif [ $tsk = 3 ];
 then
         echo "Enter your name"
         read name
@@ -194,5 +194,5 @@ then
 
 else
         echo "This is not valid task"
-        sh script-final.sh
+        sh run.sh
 fi
