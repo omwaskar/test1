@@ -1,12 +1,7 @@
 #!/bin/bash
 
 echo "Enter Task no." 
-while read tsk
-do
-  case $tsk in
-	  1) tk1 ;;
-  esac
-done
+read tsk
 info(){
 	echo "Enter Your Name"
 	read name
@@ -20,7 +15,7 @@ info(){
 	echo "College_Name:$college" >> task.txt
 }
 
-tk1(){
+tone(){
 	info
 	ls -l /rhel | grep workshop >> task.txt
 	cat /rhel/workshop >> task.txt
@@ -41,3 +36,9 @@ tk1(){
 	rm -rf task.txt
 }
 
+if [ $tsk = 1 ];
+then
+	tone
+else
+	echo "You enter wrong no"
+fi
