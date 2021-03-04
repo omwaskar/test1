@@ -12,17 +12,19 @@ then
         echo "Enter you college name"
         read college
 
-        if (ls -l /rhel | grep workshop)
+        if (ls -l /var/tmp/ | grep passwd) >/dev/null
         then
+		echo "    "
         	echo "Name: $name" 
 	        echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
-                echo "sorry you got a 0/10 in this task." 
+                echo "you got a 0/10 in this task." 
         fi
 
  elif [ $tsk = 2 ];
@@ -34,13 +36,15 @@ then
         echo "Enter you college name"
         read college
 
-	if (cat /etc/passwd | grep rhel8)
+	if (cat /etc/passwd | grep rhel8) >/dev/null && (cat /etc/passwd | grep rhel7) >/dev/null
         then
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
@@ -56,13 +60,15 @@ then
         echo "Enter you college name"
         read college
 
-        if (df -hT | grep /tmp)
+        if (df -hT | grep /tmp) >/dev/null
         then
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
@@ -80,11 +86,13 @@ then
 
         if [ $(hostname) = "rhel8.example.com" ];
         then
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
         	echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
@@ -100,13 +108,15 @@ then
         echo "Enter you college name"
         read college
 
-        if (cat /etc/motd | grep WELCOME)
+        if (grep -rw '/etc/motd' -e 'WELCOME TO RHEL8 WORKSHOP') >/dev/null
         then
+		echo "    "
 	        echo "Name: $name" 
 	        echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
 	        echo "Name: $name" 
 	        echo "Email: $email" 
 	        echo "College_Name: $college"
@@ -122,13 +132,15 @@ then
         echo "Enter you college name"
         read college
 
-        if (ip a | grep 192.168.108.192/24)
+        if (ip a | grep 192.168.108.192/24) >/dev/null
         then
+		echo "    "
         	echo "Name: $name" 
 	        echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
 	        echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
@@ -147,11 +159,13 @@ then
         SERVICE="httpd"
         if pgrep -x "$SERVICE" >/dev/null
         then
+		echo "    "
 		echo "Name: $name" 
         	echo "Email: $email" 
 	        echo "College_Name: $college"
                 echo "You got a 10/10 in this task." 
         else
+		echo "    "
 	        echo "Name: $name" 
 	        echo "Email: $email" 
 	        echo "College_Name: $college"
