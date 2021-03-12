@@ -96,13 +96,22 @@ then
         echo "Enter you college name"
         read college
 
-        if (df -hT | grep /tmp) >/dev/null
+        if(( $(df -hT | grep -o -i /tmp | wc -l)==1 )) >/dev/null
         then
-		echo "    "
-        	echo "Name: $name" 
-        	echo "Email: $email" 
-	        echo "College_Name: $college"
-                echo "You got a 10/10 in this task." 
+		if(( $(df -hT | grep /tmp | grep -o -i xfs | wc -l)==1 ))
+		then
+			echo "    "
+        		echo "Name: $name" 
+        		echo "Email: $email" 
+	        	echo "College_Name: $college"
+                	echo "You got a 10/10 in this task." 
+		else
+			echo "    "
+        		echo "Name: $name" 
+        		echo "Email: $email" 
+	        	echo "College_Name: $college"
+                	echo "You got 0/10 in this task"
+		fi
         else
 		echo "    "
         	echo "Name: $name" 
