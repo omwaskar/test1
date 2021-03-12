@@ -56,11 +56,29 @@ then
 
 	if (cat /etc/passwd | grep rhel8) >/dev/null && (cat /etc/passwd | grep rhel7) >/dev/null
         then
-		echo "    "
-        	echo "Name: $name" 
-        	echo "Email: $email" 
-	        echo "College_Name: $college"
-                echo "You got a 10/10 in this task." 
+                if(( $(groups rhel8 | grep -o -i workshop | wc -l)==1 ))
+                then
+                        if(( $(cat /etc/passwd | grep rhel7 | grep -o -i /sbin/nologin | wc -l)==1 ))
+                        then
+				echo "    "
+        			echo "Name: $name" 
+	        		echo "Email: $email" 
+			        echo "College_Name: $college"
+        	        	echo "You got a 10/10 in this task." 
+			else
+				echo "    "
+		                echo "Name: $name"
+		                echo "Email: $email"
+		                echo "College_Name: $college"
+		                echo "You got a 0/10 in this task."
+			fi
+		else
+        		echo "    "
+	                echo "Name: $name"
+	                echo "Email: $email"
+        	        echo "College_Name: $college"
+	                echo "You got a 0/10 in this task."
+	        fi
         else
 		echo "    "
         	echo "Name: $name" 
