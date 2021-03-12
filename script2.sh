@@ -16,7 +16,7 @@ then
 	then
 		if(( $(ls -l /var/tmp/ | grep passwd | grep -o -i x | wc -l)==0 ))
 		then
-			if (ls -l /var/tmp/ | grep passwd) >/dev/null
+			if (ls -l /var/tmp/ | grep -o -i passwd) >/dev/null
         		then
                                 echo "    "
                                 echo "Name: $name"
@@ -54,7 +54,7 @@ then
         echo "Enter you college name"
         read college
 
-	if (cat /etc/passwd | grep rhel8) >/dev/null && (cat /etc/passwd | grep rhel7) >/dev/null
+	if (cat /etc/passwd | grep -o -i rhel8) >/dev/null && (cat /etc/passwd | grep -o -i rhel7) >/dev/null
         then
                 if(( $(groups rhel8 | grep -o -i workshop | wc -l)==1 ))
                 then
