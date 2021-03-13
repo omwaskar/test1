@@ -219,5 +219,5 @@ then
 
 else
         echo "This is not valid task"
-        sh run.sh
+        sh rhel8.sh
 fi
