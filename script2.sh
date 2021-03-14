@@ -1,9 +1,9 @@
 #/bin/bash
 
-echo "Enter Task no"
+echo "Enter exercise no"
 read tsk
 
-if [ $tsk = 1 ];
+if [ $tsk = 1.2 ];
 then
         echo "Enter your name"
         read name
@@ -45,7 +45,7 @@ then
                 echo "you got a 0/10 in this task." 
         fi
 
- elif [ $tsk = 2 ];
+ elif [ $tsk = 1.4 ];
 then
         echo "Enter your name"
         read name
@@ -87,7 +87,7 @@ then
                 echo "You got a 0/10 in this task." 
         fi
 
-elif [ $tsk = 3 ];
+elif [ $tsk = 1.5 ];
 then
         echo "Enter your name"
         read name
@@ -120,7 +120,7 @@ then
                 echo "You got 0/10 in this task" 
         fi
 
-elif [ $tsk = 4 ];
+elif [ $tsk = 1.6 ];
 then
         echo "Enter Your Name"
         read name
@@ -144,7 +144,7 @@ then
                 echo "You got 0/10 in this task" 
         fi
 
-elif [ $tsk = 5 ];
+elif [ $tsk = 1.7 ];
 then
         echo "Enter your name"
         read name
@@ -168,7 +168,7 @@ then
                 echo "You got a 0/10 in this task." 
         fi
 
-elif [ $tsk = 6 ];
+elif [ $tsk = 1.8 ];
 then
         echo "Enter your name"
         read name
@@ -192,7 +192,7 @@ then
                 echo "You got 0/10 in this task" 
         fi
 
-elif [ $tsk = 7 ];
+elif [ $tsk = 1.9 ];
 then
         echo "Enter your name"
         read name
@@ -218,6 +218,8 @@ then
         fi
 
 else
-        echo "This is not valid task"
+	echo "    "
+        echo "This is not valid Exercise no"
+	echo "Please enter valid Exercise no like 1.2, 1.4 ..."
         sh rhel8.sh
 fi
