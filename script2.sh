@@ -13,10 +13,10 @@ score=0
 domain=$((hostname) | grep -oP '(?<=alpha.domain).*(?=.example.com)')
 default_if=$(ip route list | awk '/^default/ {print $5}')
 
-if [ $(hostname) = "alpha.domain$domain.example.com" ]; then
+if [[ $(hostname) = "alpha.domain$domain.example.com" ]]; then
 	(( score += 10 ))
 	else
-		(( score += 0 ))
+	(( score += 0 ))
 fi
 
 
@@ -61,11 +61,21 @@ fi
         fi
 
 #4
-	if [[ "$(find / -user student 2>/dev/null | wc -l)" == "$(cat /var/liststation$domain | wc -l)" ]]; then
-		(( score += 10 ))
-	else
-		(( score += 0 ))
-	fi
+
+if [[ "$(find / -user student 2>/dev/null | wc -l)" != 0 ]]; then
+        if [[  "$(cat /var/liststation$domain 2>/dev/null | wc -l)" != 0 ]]; then
+                if [[ "$(find / -user student 2>/dev/null | wc -l)" == "$(cat /var/liststation$domain 2>/dev/null | wc -l)" ]]; then
+                        (( score += 10 ))
+                else
+                        (( score += 0 ))
+                fi
+
+        else
+                (( score += 0 ))
+        fi
+else
+        (( score +=0 ))
+fi
 
 echo "    "
 echo "Name: $name" 
