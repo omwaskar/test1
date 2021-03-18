@@ -35,7 +35,7 @@ else
 fi
 
 #2
-if [[ "$(yum repolist http://dl.google.com/linux/chrome/rpm/stable/x86_64/  -v | grep repolist | awk '{print $2}')" > 0 ]]; then
+if [[ "$(yum repolist rhel -v | grep repolist | awk '{print $2}')" > 0 ]]; then
 	(( score += 10 ))
 else
 	(( score += 0 ))
