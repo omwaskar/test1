@@ -13,6 +13,13 @@ score=0
 domain=$((hostname) | grep -oP '(?<=alpha.domain).*(?=.example.com)')
 default_if=$(ip route list | awk '/^default/ {print $5}')
 
+if [ $(hostname) = "alpha.domain$domain.example.com" ]; then
+	(( score += 10 ))
+	else
+		(( score += 0 ))
+fi
+
+
 if [[ "172.24.$domain.5" == "$(ip a | grep -o -i 172.24.$domain.5)" ]]; then
     if [[ "172.24.$domain.254" == "$(ip route | grep -i -o 172.24.$domain.254)" ]]; then
        if [[ "172.24.$domain.5/24" == "$(ip -o -f inet addr show $default_if | awk '{print $4}')" ]]; then
