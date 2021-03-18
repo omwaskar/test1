@@ -13,34 +13,18 @@ score=0
 domain=$((hostname) | grep -oP '(?<=alpha.domain).*(?=.example.com)')
 default_if=$(ip route list | awk '/^default/ {print $5}')
 
-if [[ "172.17.$domain.20" == "$(ip a | grep -o -i 172.17.$domain.20)" ]]; then
-    if [[ "172.17.$domain.1" == "$(ip route | grep -i -o 172.17.$domain.1)" ]]; then
-       if [[ "172.17.$domain.20/16" == "$(ip -o -f inet addr show $default_if | awk '{print $4}')" ]]; then
-           echo "Network setup is correct"
+if [[ "172.24.$domain.5" == "$(ip a | grep -o -i 172.24.$domain.5)" ]]; then
+    if [[ "172.24.$domain.254" == "$(ip route | grep -i -o 172.24.$domain.254)" ]]; then
+       if [[ "172.24.$domain.5/24" == "$(ip -o -f inet addr show $default_if | awk '{print $4}')" ]]; then
 	   (( score += 10 ))
        else
-           echo "netmask is not correct"
-	   echo "    "
-	   echo "Name: $name"
-	   echo "Email: $email"
-	   echo "College_Name: $college"
-           echo "You got $score Marks"
+           (( score += 0 ))
        fi
     else
-        echo "gateway is not correct"
-	echo "    "
-	echo "Name: $name"
-	echo "Email: $email"
-	echo "College_Name: $college"
-	echo "You got $score Marks"
+        (( score += 0 ))
     fi
 else
-    echo "Ip address is not correct"
-    echo "    "
-    echo "Name: $name"
-    echo "Email: $email"
-    echo "College_Name: $college"
-    echo "You got $score Marks"
+    (( score += 0 ))
 fi
 
 #2
@@ -53,29 +37,17 @@ fi
                         then
 				(( score += 10 )) 
 			else
-				echo "    "
-		                echo "Name: $name"
-		                echo "Email: $email"
-		                echo "College_Name: $college"
-		                echo "You got $score Marks"
+				(( score += 0 ))
 			fi
 		else
-        		echo "    "
-	                echo "Name: $name"
-	                echo "Email: $email"
-        	        echo "College_Name: $college"
-	                echo "You got $score Marks"
+			(( score += 0 ))
 	        fi
         else
-		echo "    "
-        	echo "Name: $name" 
-        	echo "Email: $email" 
-	        echo "College_Name: $college"
-                echo "You got $score Marks" 
+		(( score += 0 ))
         fi
 
 echo "    "
 echo "Name: $name" 
-echo "Email: $email" 
+echo "Email: $mail" 
 echo "College_Name: $college"
 echo "You got $score Marks"
