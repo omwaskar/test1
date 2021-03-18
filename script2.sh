@@ -11,7 +11,7 @@ score=0
 #1
 
 domain=$((hostname) | grep -oP '(?<=alpha.domain).*(?=.example.com)')
-default_if=$(ip route list | awk '/^default/ {print $5}')
+default_if=$(ip route list | awk '/static/ {print $5}')
 
 if [[ $(hostname) = "alpha.domain$domain.example.com" ]]; then
 	(( score += 10 ))
@@ -35,7 +35,7 @@ else
 fi
 
 #2
-if [[ "$(yum repolist rhel -v | grep repolist | awk '{print $2}')" > 0 ]]; then
+if [[ "$(yum repolist rhel -v | grep Repo-pkgs | awk '{print $3}')" > 0 ]]; then
 	(( score += 10 ))
 else
 	(( score += 0 ))
