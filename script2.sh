@@ -28,6 +28,13 @@ else
 fi
 
 #2
+if [[ "$(yum repolist http://dl.google.com/linux/chrome/rpm/stable/x86_64/  -v | grep repolist | awk '{print $2}')" > 0 ]]; then
+	(( score += 10 ))
+else
+	(( score += 0 ))
+fi
+
+#3
 
 	if (cat /etc/passwd | grep -o -i natasha) >/dev/null && (cat /etc/passwd | grep -o -i harry) >/dev/null && (cat /etc/passwd | grep -o -i sarah) >/dev/null
         then
@@ -46,8 +53,16 @@ fi
 		(( score += 0 ))
         fi
 
+#4
+	if [[ "$(find / -user student 2>/dev/null | wc -l)" == "$(cat /var/liststation$domain | wc -l)" ]]; then
+		(( score += 10 ))
+	else
+		(( score += 0 ))
+	fi
+
 echo "    "
 echo "Name: $name" 
 echo "Email: $mail" 
 echo "College_Name: $college"
 echo "You got $score Marks"
+
