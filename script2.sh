@@ -81,7 +81,7 @@ else
         (( score5 +=0 ))
 fi
 
-score = score1 + score2 + score3 + score4 + score5
+(( score = score1 + score2 + score3 + score4 + score5 ))
 
 echo "    "
 echo "System no: $domain"
