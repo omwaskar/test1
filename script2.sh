@@ -5,6 +5,7 @@ read domain
 echo "Enter Your Name"
 read name
 
+score=0
 score1=0
 score2=0
 score3=0
@@ -80,6 +81,8 @@ else
         (( score5 +=0 ))
 fi
 
+score = score1 + score2 + score3 + score4 + score5
+
 echo "    "
 echo "System no: $domain"
 echo "Name: $name" 
@@ -88,4 +91,5 @@ echo "Question 2: $score2 Marks"
 echo "Question 3: $score3 Marks"
 echo "Question 4: $score4 Marks"
 echo "Question 5: $score5 Marks"
-
+echo "    "
+echo "Total Marks: $score"
