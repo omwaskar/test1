@@ -1,44 +1,47 @@
 #!/bin/bash
 
+echo "Enter Your System no like 0,1,2...etc."
+read domain
 echo "Enter Your Name"
 read name
-echo "Enter Your Mail ID"
-read mail
-echo "Enter Your College Name"
-read college
-score=0
 
+score1=0
+score2=0
+score3=0
+score4=0
+score5=0
 #1
 
-domain=$((hostname) | grep -oP '(?<=alpha.domain).*(?=.example.com)')
-default_if=$(ip route list | awk '/static/ {print $5}')
+#domain=$((hostname) | grep -oP '(?<=alpha.domain).*(?=.example.com)')
+#default_if=$(ip route list | awk '/static/ {print $5}')
 
 if [[ $(hostname) = "alpha.domain$domain.example.com" ]]; then
-	(( score += 10 ))
+	(( score1 += 10 ))
 	else
-	(( score += 0 ))
+	(( score1 += 0 ))
 fi
 
+default_if=$(ip route list | awk '/default via 172.24.$domain.254/ {print $5}')
 
 if [[ "172.24.$domain.5" == "$(ip a | grep -o -i 172.24.$domain.5)" ]]; then
     if [[ "172.24.$domain.254" == "$(ip route | grep -i -o 172.24.$domain.254)" ]]; then
        if [[ "172.24.$domain.5/24" == "$(ip -o -f inet addr show $default_if | awk '{print $4}')" ]]; then
-	   (( score += 10 ))
+	   (( score2 += 10 ))
        else
-           (( score += 0 ))
+           (( score2 += 0 ))
        fi
     else
-        (( score += 0 ))
+        (( score2 += 0 ))
     fi
 else
-    (( score += 0 ))
+    (( score2 += 0 ))
 fi
 
 #2
 if [[ "$(yum repolist rhel -v | grep Repo-pkgs | awk '{print $3}')" > 0 ]]; then
-	(( score += 10 ))
+	(( score3 += 10 ))
 else
-	(( score += 0 ))
+	(( score3 += 0 ))
 fi
 
 #3
@@ -49,15 +52,15 @@ fi
                 then
                         if(( $(cat /etc/passwd | grep sarah | grep -o -i /sbin/nologin | wc -l)==1 ))
                         then
-				(( score += 10 )) 
+				(( score4 += 10 )) 
 			else
-				(( score += 0 ))
+				(( score4 += 0 ))
 			fi
 		else
-			(( score += 0 ))
+			(( score4 += 0 ))
 	        fi
         else
-		(( score += 0 ))
+		(( score4 += 0 ))
         fi
 
 #4
@@ -65,21 +68,24 @@ fi
 if [[ "$(find / -user student 2>/dev/null | wc -l)" != 0 ]]; then
         if [[  "$(cat /var/liststation$domain 2>/dev/null | wc -l)" != 0 ]]; then
                 if [[ "$(find / -user student 2>/dev/null | wc -l)" == "$(cat /var/liststation$domain 2>/dev/null | wc -l)" ]]; then
-                        (( score += 10 ))
+                        (( score5 += 10 ))
                 else
-                        (( score += 0 ))
+                        (( score5 += 0 ))
                 fi
 
         else
-                (( score += 0 ))
+                (( score5 += 0 ))
         fi
 else
-        (( score +=0 ))
+        (( score5 +=0 ))
 fi
 
 echo "    "
+echo "System no: $domain"
 echo "Name: $name" 
-echo "Email: $mail" 
-echo "College_Name: $college"
-echo "You got $score Marks"
+echo "Question 1: $score1 Marks"
+echo "Question 2: $score2 Marks"
+echo "Question 3: $score3 Marks"
+echo "Question 4: $score4 Marks"
+echo "Question 5: $score5 Marks"
 
