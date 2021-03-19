@@ -21,7 +21,7 @@ if [[ $(hostname) = "alpha.domain$domain.example.com" ]]; then
 	(( score1 += 0 ))
 fi
 
-default_if=$(ip route list | awk '/default via 172.24.$domain.254/ {print $5}')
+default_if=$(ip route list | grep "default via 172.24.$domain.254" | awk '{print $5}')
 
 if [[ "172.24.$domain.5" == "$(ip a | grep -o -i 172.24.$domain.5)" ]]; then
     if [[ "172.24.$domain.254" == "$(ip route | grep -i -o 172.24.$domain.254)" ]]; then
