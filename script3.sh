@@ -16,7 +16,11 @@ score11=0
 #11
 
 if [[ "$(cat /usr/share/dict/words 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
-	(( score11 += 10 ))
+	if [[ "$(cat /root/result.txt 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
+		(( score11 += 10 ))
+	else
+		(( score11 += 0 ))
+	fi
 else
 	(( score11 += 0 ))
 fi
