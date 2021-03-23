@@ -90,7 +90,7 @@ fi
 
 #6
 
-if(( $(crontab -u natasha -l | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
+if(( $(crontab -u natasha -l 2>/dev/null | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
 then
 	(( score6 += 10 ))
 else
