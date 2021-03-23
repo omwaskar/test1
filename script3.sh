@@ -21,9 +21,9 @@ then
 	then
 		if(( $(ls -l /var/tmp/ | grep fstab | grep -o -i x | wc -l)==0 ))
 		then
-			if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i natasha:rwx | wc -l)==1 ))
+			if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i natasha:rw- | wc -l)==1 ))
         		then
-				if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i harry:--x | wc -l)==1 ))
+				if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i harry:--- | wc -l)==1 ))
                         	then
 					if(( $(ls -l /var/tmp/ | grep fstab | grep -o -i r | wc -l)>=6 ))
                 			then
