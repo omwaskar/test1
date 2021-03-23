@@ -13,6 +13,16 @@ score9=0
 score10=0
 score11=0
 
+#6
+
+if(( $(crontab -u natasha -l | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
+then
+	(( score6 += 10 ))
+else
+	(( score6 += 0 ))
+fi
+
+
 #7
 
 if(( $(ls -l /var/tmp/ | grep -o -i fstab | wc -l)==1 ))
@@ -45,6 +55,15 @@ then
 	fi
 else
 (( score7 += 0 ))
+fi
+
+#8
+
+if(( $(cat /etc/chrony.conf | grep "server classroom.example.com iburst" | wc -l)==1 ))
+then
+        (( score8 += 10 ))
+else
+        (( score8 += 0 ))
 fi
 
 #9
