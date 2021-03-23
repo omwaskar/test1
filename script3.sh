@@ -46,9 +46,17 @@ fi
 
 #11
 
-if [[ "$(cat /usr/share/dict/words 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
-	if [[ "$(cat /root/result.txt 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
-		(( score11 += 10 ))
+if [[ "$(cat /usr/share/dict/words 2>/dev/null | wc -l)" != 0 ]]; then
+	 if [[  "$(cat /root/result.txt 2>/dev/null | wc -l)" != 0 ]]; then
+		if [[ "$(cat /usr/share/dict/words 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
+			if [[ "$(cat /root/result.txt 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
+				(( score11 += 10 ))
+			else
+				(( score11 += 0 ))
+			fi
+		else
+			(( score11 += 0 ))
+		fi
 	else
 		(( score11 += 0 ))
 	fi
