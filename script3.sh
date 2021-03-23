@@ -17,7 +17,7 @@ score11=0
 
 if (cat /etc/passwd | grep -o -i station$domain) >/dev/null
         then
-                if(( $(cat /etc/passwd | grep -oP '(?<=station$domain:x:).*(?=::)' | grep ^1088 | wc -l)==1 ))
+                if(( $(cat /etc/passwd | grep station$domain | grep -oP '(?<=:x:).*(?=::)' | grep ^1088 | grep -oP '.*(?=:)' | wc -l)==1 ))
                 then
                         if(( $(cat /etc/passwd | grep station$domain | grep -o -i /sbin/nologin | wc -l)==1 ))
                         then
