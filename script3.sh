@@ -13,6 +13,18 @@ score9=0
 score10=0
 score11=0
 
+#10
+
+if [[ "$(find /usr/local/ 2>/dev/null | grep ^/usr/local | wc -l)" == "$(tar -tf /my_backup.tar.gz 2>/dev/null | wc -l)" ]]; then
+	if [[ "$(tar -tf /my_backup.tar.gz 2>/dev/null | grep ^usr/local | wc -l)" == "$(tar -tf /my_backup.tar.gz 2>/dev/null | wc -l)" ]]; then
+		(( score10 += 10 ))
+	else
+		(( score10 += 0 ))
+	fi
+else
+	(( score10 += 0 ))
+fi
+
 #11
 
 if [[ "$(cat /usr/share/dict/words 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
