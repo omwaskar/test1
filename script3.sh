@@ -13,6 +13,25 @@ score9=0
 score10=0
 score11=0
 
+#9
+
+if (cat /etc/passwd | grep -o -i station$domain) >/dev/null
+        then
+                if(( $(cat /etc/passwd | grep -oP '(?<=station$domain:x:).*(?=::)' | grep ^1088 | wc -l)==1 ))
+                then
+                        if(( $(cat /etc/passwd | grep station$domain | grep -o -i /sbin/nologin | wc -l)==1 ))
+                        then
+				(( score9 += 10 )) 
+			else
+				(( score9 += 0 ))
+			fi
+		else
+			(( score9 += 0 ))
+	        fi
+        else
+		(( score9 += 0 ))
+        fi
+
 #10
 
 if [[ "$(find /usr/local/ 2>/dev/null | grep ^/usr/local | wc -l)" == "$(tar -tf /my_backup.tar.gz 2>/dev/null | wc -l)" ]]; then
