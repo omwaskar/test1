@@ -13,24 +13,58 @@ score9=0
 score10=0
 score11=0
 
+#7
+
+if(( $(ls -l /var/tmp/ | grep -o -i fstab | wc -l)==1 ))
+then
+	if(( $(ls -l /var/tmp/ | grep fstab  | grep -o -i root | wc -l)>1 ))
+	then
+		if(( $(ls -l /var/tmp/ | grep fstab | grep -o -i x | wc -l)==0 ))
+		then
+			if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i natasha:rwx | wc -l)==1 ))
+        		then
+				if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i harry:--x | wc -l)==1 ))
+                        	then
+					if(( $(ls -l /var/tmp/ | grep fstab | grep -o -i r | wc -l)>=6 ))
+                			then
+					        (( score7 += 10 ))
+                		        else
+                                		(( score7 += 0 ))
+                        		fi
+				else
+					(( score7 += 0 ))
+				fi
+			else
+				(( score7 += 0 ))
+			fi
+		else
+			(( score7 += 0 ))
+		fi
+	else
+		(( score7 += 0 ))
+	fi
+else
+(( score7 += 0 ))
+fi
+
 #9
 
 if (cat /etc/passwd | grep -o -i station$domain) >/dev/null
-        then
-                if(( $(cat /etc/passwd | grep station$domain | grep -oP '(?<=:x:).*(?=::)' | grep ^1088 | grep -oP '.*(?=:)' | wc -l)==1 ))
+then
+	 if(( $(cat /etc/passwd | grep station$domain | grep -oP '(?<=:x:).*(?=::)' | grep ^1088 | grep -oP '.*(?=:)' | wc -l)==1 ))
+         then
+		if(( $(cat /etc/passwd | grep station$domain | grep -o -i /sbin/nologin | wc -l)==1 ))
                 then
-                        if(( $(cat /etc/passwd | grep station$domain | grep -o -i /sbin/nologin | wc -l)==1 ))
-                        then
-				(( score9 += 10 )) 
-			else
-				(( score9 += 0 ))
-			fi
+			(( score9 += 10 )) 
 		else
 			(( score9 += 0 ))
-	        fi
-        else
+		fi
+	else
 		(( score9 += 0 ))
         fi
+else
+	(( score9 += 0 ))
+fi
 
 #10
 
