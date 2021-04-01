@@ -19,10 +19,9 @@ score19=0
 
 if(( $(lvs | grep vo1 | wc -l)==1 ))
 then
-	var=$(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3})
-	if (( var >= 280 ))
+	if(( $(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3}) >= 280 ))
 	then	
-		if (( var >= 310 ))
+		if(( $(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3}) <= 310 ))
 		then
 			(( score13 += 10 ))
 		else
@@ -34,6 +33,7 @@ then
 else
 	(( score13 += 0 ))
 fi
+
 
 
 if(( $(crontab -u natasha -l | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
