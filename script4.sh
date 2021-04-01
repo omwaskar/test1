@@ -86,108 +86,30 @@ else
 	(( score15 += 0 ))
 fi
 
+#16
 
-if(( $(crontab -u natasha -l | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
+if(( $(vgdisplay database | grep "PE Size" | grep -o -P "16" | wc -l)==1 ))
 then
-	(( score6 += 10 ))
-else
-	(( score6 += 0 ))
-fi
-
-
-#7
-
-if(( $(ls -l /var/tmp/ | grep -o -i fstab | wc -l)==1 ))
-then
-	if(( $(ls -l /var/tmp/ | grep fstab  | grep -o -i root | wc -l)>1 ))
+	if(( $(lvdisplay database | grep "Current LE" | grep "50" | wc -l)==1 ))
 	then
-		if(( $(ls -l /var/tmp/ | grep fstab | grep -o -i x | wc -l)==0 ))
+		if(( $(df -hT | grep "/common/classes" | grep -o -i "ext4" | wc -l)==1 ))
 		then
-			if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i natasha:rw- | wc -l)==1 ))
-        		then
-				if(( $(getfacl -a -p /var/tmp/fstab | grep -o -i harry:--- | wc -l)==1 ))
-                        	then
-					if(( $(ls -l /var/tmp/ | grep fstab | grep -o -i r | wc -l)>=6 ))
-                			then
-					        (( score7 += 10 ))
-                		        else
-                                		(( score7 += 0 ))
-                        		fi
-				else
-					(( score7 += 0 ))
-				fi
+			if(( $(cat /etc/fstab | grep "/database/datastore" | grep "/common/classes" | grep "ext4" | wc -l)==1 ))
+			then
+				(( score16 += 10 ))
 			else
-				(( score7 += 0 ))
+				(( score16 += 0 ))
 			fi
 		else
-			(( score7 += 0 ))
+			(( score16 += 0 ))
 		fi
 	else
-		(( score7 += 0 ))
+		(( score16 += 0 ))
 	fi
 else
-(( score7 += 0 ))
+	(( score16 += 0 ))
 fi
 
-#8
-
-if(( $(cat /etc/chrony.conf | grep "server classroom.example.com iburst" | wc -l)==1 ))
-then
-        (( score8 += 10 ))
-else
-        (( score8 += 0 ))
-fi
-
-#9
-
-if (cat /etc/passwd | grep -o -i station$domain) >/dev/null
-then
-	 if(( $(cat /etc/passwd | grep station$domain | grep -oP '(?<=:x:).*(?=::)' | grep ^1088 | grep -oP '.*(?=:)' | wc -l)==1 ))
-         then
-		if(( $(cat /etc/passwd | grep station$domain | grep -o -i /sbin/nologin | wc -l)==1 ))
-                then
-			(( score9 += 10 )) 
-		else
-			(( score9 += 0 ))
-		fi
-	else
-		(( score9 += 0 ))
-        fi
-else
-	(( score9 += 0 ))
-fi
-
-#10
-
-if [[ "$(find /usr/local/ 2>/dev/null | grep ^/usr/local | wc -l)" == "$(tar -tf /my_backup.tar.gz 2>/dev/null | wc -l)" ]]; then
-	if [[ "$(tar -tf /my_backup.tar.gz 2>/dev/null | grep ^usr/local | wc -l)" == "$(tar -tf /my_backup.tar.gz 2>/dev/null | wc -l)" ]]; then
-		(( score10 += 10 ))
-	else
-		(( score10 += 0 ))
-	fi
-else
-	(( score10 += 0 ))
-fi
-
-#11
-
-if [[ "$(cat /usr/share/dict/words 2>/dev/null | wc -l)" != 0 ]]; then
-	 if [[  "$(cat /root/result.txt 2>/dev/null | wc -l)" != 0 ]]; then
-		if [[ "$(cat /usr/share/dict/words 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
-			if [[ "$(cat /root/result.txt 2>/dev/null | grep ^ich | wc -l)" == "$(cat /root/result.txt 2>/dev/null | wc -l)" ]]; then
-				(( score11 += 10 ))
-			else
-				(( score11 += 0 ))
-			fi
-		else
-			(( score11 += 0 ))
-		fi
-	else
-		(( score11 += 0 ))
-	fi
-else
-	(( score11 += 0 ))
-fi
 
 (( score = score12 + score13 + score14 + score15 + score16 + score17 + score18 + score19 ))
 
