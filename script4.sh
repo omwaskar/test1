@@ -17,6 +17,17 @@ score19=0
 
 #12
 
+if(( $(cat /etc/httpd/conf/httpd.conf | grep "Listen 18989" | wc -l)==1 ))
+then
+	if(( $(semanage port -l | grep "http_port_t" | grep "18989" | wc -l)==1 ))
+	then
+		(( score12 += 10 ))
+	else
+		(( score12 += 0 ))
+	fi
+else
+	(( score12 += 0 ))
+fi
 
 #13
 
