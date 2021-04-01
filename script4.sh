@@ -19,9 +19,9 @@ score19=0
 
 if(( $(lvs | grep vo1 | wc -l)==1 ))
 then
-	if(( $(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3}) >= 280 ))
+	if(( $(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3}') >= 280 ))
 	then	
-		if(( $(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3}) <= 310 ))
+		if(( $(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3}') <= 312 ))
 		then
 			(( score13 += 10 ))
 		else
