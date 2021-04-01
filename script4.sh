@@ -19,7 +19,18 @@ score19=0
 
 if(( $(lvs | grep vo1 | wc -l)==1 ))
 then
-	(( score13 += 10 ))
+	var=$(lvs | grep vo1 | awk '{print $4}' | grep -o -P '^.{0,3})
+	if (( var >= 280 ))
+	then	
+		if (( var >= 310 ))
+		then
+			(( score13 += 10 ))
+		else
+			(( score13 += 0 ))
+		fi
+	else
+		(( score13 += 0 ))
+	fi
 else
 	(( score13 += 0 ))
 fi
