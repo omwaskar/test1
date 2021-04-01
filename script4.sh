@@ -15,6 +15,9 @@ score17=0
 score18=0
 score19=0
 
+#12
+
+
 #13
 
 if(( $(lvs | grep vo1 | wc -l)==1 ))
@@ -51,6 +54,25 @@ then
 	fi
 else
 	(( score14 += 0 ))
+fi
+
+#15
+
+if(( $(lsblk | grep -i -P "swap" | grep "200M" | wc -l)==1 ))
+then
+	if(( $(cat /etc/fstab | grep swap | awk '{print $2}' | grep swap | wc -l)==1 ))
+	then
+		if(( $(cat /etc/fstab | grep swap | awk '{print $3}' | grep swap | wc -l)>=1 ))
+		then
+			(( score15 += 10 ))
+		else
+			(( score15 += 0 ))
+		fi
+	else
+		(( score15 += 0 ))
+	fi
+else
+	(( score15 += 0 ))
 fi
 
 
