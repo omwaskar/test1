@@ -34,6 +34,24 @@ else
 	(( score13 += 0 ))
 fi
 
+#14
+
+if(( $(lsblk | grep "/common/part" | awk '{print $4}' | grep "500M" | wc -l)==1 ))
+then
+	if(( $(cat /etc/fstab | grep "/common/part" | awk '{print $2}' | wc -l)==1 ))
+	then
+		if(( $(df -hT | grep "/common/part" | awk '{print $7}' | wc -l)==1 ))
+		then	
+			(( score14 += 10 ))
+		else
+			(( score14 += 0 ))
+		fi
+	else
+		(( score14 += 0 ))
+	fi
+else
+	(( score14 += 0 ))
+fi
 
 
 if(( $(crontab -u natasha -l | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
