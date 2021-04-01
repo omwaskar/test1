@@ -60,7 +60,7 @@ fi
 
 if(( $(lsblk | grep -i -P "swap" | grep "200M" | wc -l)==1 ))
 then
-	if(( $(cat /etc/fstab | grep swap | awk '{print $2}' | grep swap | wc -l)==1 ))
+	if(( $(cat /etc/fstab | grep swap | awk '{print $2}' | grep swap | wc -l)>=1 ))
 	then
 		if(( $(cat /etc/fstab | grep swap | awk '{print $3}' | grep swap | wc -l)>=1 ))
 		then
