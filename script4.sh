@@ -15,7 +15,15 @@ score17=0
 score18=0
 score19=0
 
-#6
+#13
+
+if(( $(lvs | grep vo1 | wc -l)==1 ))
+then
+	(( score13 += 10 ))
+else
+	(( score13 += 0 ))
+fi
+
 
 if(( $(crontab -u natasha -l | grep "25 06" | grep -oi "/bin/echo Hello Test" | wc -l)==1 ))
 then
