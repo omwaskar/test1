@@ -88,9 +88,9 @@ fi
 
 #16
 
-if(( $(vgdisplay database | grep "PE Size" | grep -o -P "16" | wc -l)==1 ))
+if(( $(vgdisplay database 2>/dev/null | grep "PE Size" | grep -o -P "16" | wc -l)==1 ))
 then
-	if(( $(lvdisplay database | grep "Current LE" | grep "50" | wc -l)==1 ))
+	if(( $(lvdisplay database 2>/dev/null | grep "Current LE" | grep "50" | wc -l)==1 ))
 	then
 		if(( $(df -hT | grep "/common/classes" | grep -o -i "ext4" | wc -l)==1 ))
 		then
@@ -112,7 +112,7 @@ fi
 
 #17
 
-if(( $(vdostats --human-readable | grep "/dev/mapper/vgrp" | wc -l)==1 ))
+if(( $(vdostats --human-readable 2>/dev/null | grep "/dev/mapper/vgrp" | wc -l)==1 ))
 then
 	if(( $(df -hT /dev/mapper/vgrp | grep "/dev/mapper/vgrp" | grep "xfs" | grep "/datadisk" | wc -l)==1 ))
 	then
