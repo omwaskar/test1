@@ -110,6 +110,25 @@ else
 	(( score16 += 0 ))
 fi
 
+#17
+
+if(( $(vdostats --human-readable | grep "/dev/mapper/vgrp" | wc -l)==1 ))
+then
+	if(( $(df -hT /dev/mapper/vgrp | grep "/dev/mapper/vgrp" | grep "xfs" | grep "/datadisk" | wc -l)==1 ))
+	then
+		if(( $(cat /etc/fstab | grep "/dev/mapper/vgrp" | grep "/datadisk" | grep "xfs" | wc -l)==1 ))
+		then
+			(( score17 += 10 ))
+		else
+			(( score17 += 0 ))
+		fi
+	else
+		(( score17 += 0 ))
+	fi
+else
+	(( score17 += 0 ))
+fi
+		
 
 (( score = score12 + score13 + score14 + score15 + score16 + score17 + score18 + score19 ))
 
