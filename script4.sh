@@ -128,7 +128,23 @@ then
 else
 	(( score17 += 0 ))
 fi
-		
+	
+#19
+if(( $(df -hT | grep "/dev/mapper/stratis" | grep "/dataStore" | wc -l)==1 ))
+then
+	if [[ "$(cat /etc/passwd 2>/dev/null | wc -l)" == "$(cat /dataStore/passwd 2>/dev/null | wc -l)" ]]; then
+		if(( $(stratis fs | grep "dataStoreBackup" | wc -l)==1 ))
+		then
+			(( score19 += 10 ))
+		else
+			(( score19 +=0 ))
+		fi
+	else
+		(( score19 +=0 ))
+	fi
+else
+	(( score19 +=0 ))
+fi				
 
 (( score = score12 + score13 + score14 + score15 + score16 + score17 + score18 + score19 ))
 
